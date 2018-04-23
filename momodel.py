@@ -394,8 +394,6 @@ class ValidationController(CementBaseController):
 
 class UtilityController(CementBaseController):
 
-    PROJECT_ID = ""
-
     class Meta:
         label = 'utility'
         stacked_on = 'base'
