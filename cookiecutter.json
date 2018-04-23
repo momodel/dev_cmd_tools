@@ -1,0 +1,7 @@
+{
+  "module_author": "",
+  "module_name": "mo_mymodule",
+  "module_type": "toolkit/model",
+  "module_description": "A MO module",
+  "repository": "https://github.com/my_name/mo_mymodule"
+}
