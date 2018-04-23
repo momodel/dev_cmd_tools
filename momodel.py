@@ -3,6 +3,10 @@ import re
 import importlib
 import unittest
 import yaml
+import base64
+from io import BytesIO
+from PIL import Image
+from datetime import datetime
 
 from cement.core.foundation import CementApp
 from cement.core.controller import CementBaseController, expose
@@ -10,7 +14,6 @@ from cement.core.controller import CementBaseController, expose
 
 class ValidationController(CementBaseController):
 
-#testasdfasdfadsfdsf
     class Meta:
 
         label = 'base'
@@ -28,8 +31,6 @@ class ValidationController(CementBaseController):
               dict(action='store', help='the big C option'))
 
         ]
-
-        # ValidationController.Validation.test = self.app.pargs.module_path
 
     @expose(hide=True)
     def default(self):
@@ -80,11 +81,18 @@ class ValidationController(CementBaseController):
 
     class Validation(unittest.TestCase):
 
-        #MODULE_PATH = "/Users/Chun/Documents/workspace/momodel/goldersgreen/pyserver/user_directory/zhaofengli/weather_prediction"
-        MODULE_PATH = "./"
-        MODULE_NAME = "weather_prediction"
-        MODULE_AUTHOR = "zhaofengli"
-        MODULE_TYPE = 'model'
+        # MODULE_PATH = "/Users/Chun/Documents/workspace/momodel/mo/pyserver/user_directory/zhaofengli/weather_prediction"
+        MODULE_PATH = "../"
+
+        MODULE_NAME = {{cookiecutter.module_name}}
+        # MODULE_NAME = "weather_prediction"
+
+        MODULE_AUTHOR = {{cookiecutter.module_author}}
+        # MODULE_AUTHOR = "zhaofengli"
+
+
+        MODULE_TYPE = {{cookiecutter.module_type}}
+        # MODULE_TYPE = 'model'
         MODULE_VALIDATION_MODE = 'basic'
 
         def test_src_directory(self):
@@ -286,9 +294,7 @@ class ValidationController(CementBaseController):
                     with self.subTest(name="{}()".format(prefix)):
                         try:
                             module_import_path = \
-                                "{}.{}.{}.src.main".format(
-                                    self.MODULE_USER_DIRECTORY,
-                                    self.MODULE_AUTHOR,
+                                "{}.src.main".format(
                                     self.MODULE_NAME)
                             print("module_import_path", module_import_path)
 
@@ -401,7 +407,7 @@ class UtilityController(CementBaseController):
 
 class MyApp(CementApp):
     class Meta:
-        label = 'GD_cmd_tool'
+        label = 'MO_dev_cmd_tool'
         base_controller = 'base'
         handlers = [ValidationController, UtilityController]
 
